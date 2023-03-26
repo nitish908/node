@@ -35,14 +35,14 @@ env:
   ECR_REPOSITORY: app-reop           # set this to your Amazon ECR repository name
   ECS_SERVICE: app_service                 # set this to your Amazon ECS service name
   ECS_CLUSTER: app_cluster                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: .github/workflow/td.json # set this to the path to your Amazon ECS task definition
+  ECS_TASK_DEFINITION: .github/workflow/td.json   # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: app           # set this to the name of the container in the
+  CONTAINER_NAME:app           # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
 
 permissions:
   contents: read
-  
+
 jobs:
   deploy:
     name: Deploy
@@ -58,7 +58,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ap-south-1
+        aws-region: ${{ env.AWS_REGION }}
 
     - name: Login to Amazon ECR
       id: login-ecr
@@ -67,8 +67,8 @@ jobs:
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: ${{ github.sha }}
+        ECR_REGISTRY:"419591513418.dkr.ecr.ap-south-1.amazonaws.com/app-repo"
+        IMAGE_TAG: latest
       run: |
         # Build a docker container and
         # push it to ECR so that it can
