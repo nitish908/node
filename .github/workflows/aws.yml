@@ -32,7 +32,7 @@ on:
 
 env:
   AWS_REGION: ap-south-1                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: app-repo           # set this to your Amazon ECR repository name
+  ECR_REPOSITORY: app-reop           # set this to your Amazon ECR repository name
   ECS_SERVICE: app_service                 # set this to your Amazon ECS service name
   ECS_CLUSTER: app_cluster                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: .github/workflow/td.json # set this to the path to your Amazon ECS task definition
@@ -42,9 +42,7 @@ env:
 
 permissions:
   contents: read
-  contents: write
   
-
 jobs:
   deploy:
     name: Deploy
