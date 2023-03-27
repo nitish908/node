@@ -1,8 +1,19 @@
-FROM node:16
+FROM node:14-alpine
 
-WORKDIR /app
+# Create app directory
+WORKDIR /usr/src/app
 
-COPY package*.json ./
-RUN npm install
-COPY . ./
-CMD node index.js
+# Copy package.json and package-lock.json
+COPY index.js /usr/src/app
+
+# Install app dependencies
+RUN npm install express
+
+# Copy app source code
+COPY . .
+
+# Expose port 8080 for the application
+EXPOSE 3000
+
+# Start the Node.js application
+CMD [ "node", "hello.js" ]
