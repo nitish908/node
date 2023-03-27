@@ -4,7 +4,7 @@ FROM node:14-alpine
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json
-COPY index.js /usr/src/app
+COPY index.js ./
 
 # Install app dependencies
 RUN npm install express
