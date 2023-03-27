@@ -90,5 +90,6 @@ jobs:
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         service: app_service
+         service_arn:"arn:aws:ecs:ap-south-1:419591513418:service/app_cluster/app-service"
         cluster: app_cluster
         wait-for-service-stability: false
